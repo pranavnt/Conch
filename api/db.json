@@ -2,9 +2,7 @@
   "scripts": [
     {
       "Name": "pranav",
-      "Script": "echo Hello! I am Pranav Teegavarapu!",
-      "UserName": "pranavnt",
-      "UserEmail": "pranavnt@outlook.com"
+      "Script": "echo Hello! I am Pranav Teegavarapu!"
     }
   ]
 }
