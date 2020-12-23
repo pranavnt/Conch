@@ -1,4 +1,8 @@
-# Conch - Store your shell scripts in the cloud and run them anywhere!
+<h1 align="center">Conch</h1> 
+<div style="text-align:center">
+    <img src="./.github/conch.png" width="30%" />
+</div>
+<h4 align="center">Store your shell scripts in the cloud and run them anywhere!</h4>
 
 Add GIF of it working
 
