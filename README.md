@@ -1,8 +1,8 @@
 <h1 align="center">Conch</h1> 
-<div style="text-align:center">
+<p align="center">
     <img src="./.github/conch.png" width="20%" />
-</div>
-<h3 align="center">Store your shell scripts in the cloud and run them anywhere!</h4>
+</p>
+<h2 align="center">Store your shell scripts in the cloud and run them anywhere!</h4>
 
 Add GIF of it working
 
