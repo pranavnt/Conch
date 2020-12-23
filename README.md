@@ -1,1 +1,1 @@
-# csh - Store and run shell scripts in the cloud
+# Conch - Store your shell scripts in the cloud and run them anywhere!
