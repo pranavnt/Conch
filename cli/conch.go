@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"net/http"
 
 	"os"
 	"os/exec"
@@ -62,16 +63,18 @@ func uploadScript(filePath string, name string) {
 	fmt.Println(scriptString)
 
 	// now post scriptstring and name to the API
+
+	// print out the api response
 }
 
 func runScript(name string) {
 	// call API to get script and run it
 
-	// send GET request to server -- serverurl/scripts/name
-	url := "serverURL.com/scripts/" + name
-	fmt.Println(url)
+	resp, err := http.Get("http://127.0.0.1:3000/scripts/" + name)
+	// parse this and get the command
 
 	// once you have the script, do runCmd to run the script
+
 }
 
 func runCmd(cmd string) {
@@ -95,6 +98,10 @@ func runCmd(cmd string) {
 		}
 	}
 	return
+}
+
+type Script struct {
+	script string
 }
 
 // IO Utils
