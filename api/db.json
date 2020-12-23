@@ -1,8 +1,12 @@
 {
   "scripts": [
     {
-      "Name": "pranav",
-      "Script": "echo Hello! I am Pranav Teegavarapu!"
+      "name": "pranav",
+      "script": "echo Hello! I am Pranav Teegavarapu!"
+    },
+    {
+      "name": "helloWorld",
+      "script": "echo Hello World!"
     }
   ]
 }
