@@ -2,7 +2,7 @@
 <p align="center">
     <img src="./.github/conch.png" width="20%" />
 </p>
-<h2 align="center">Store your shell scripts in the cloud and run them anywhere!</h4>
+<h2 align="center">Store your shell scripts in the cloud and run them anywhere!</h2>
 
 Add GIF of it working
 
