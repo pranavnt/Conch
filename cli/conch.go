@@ -11,8 +11,34 @@ import (
 )
 
 func main() {
-	uploadScript("hi", "bye")
-	//runCmd("echo hi && echo bye")
+	if len(os.Args) == 0 {
+		fmt.Println("You have to provide a command :)")
+		os.Exit(1)
+	} else if len(os.Args) == 1 {
+		fmt.Println("Welcome to Conch!")
+		// add basic usage instructions
+		os.Exit(1)
+	}
+
+	switch os.Args[1] {
+	case "upload":
+		if len(os.Args) == 4 {
+			uploadScript(os.Args[2], os.Args[3])
+		} else {
+			fmt.Println("You must format this as `conch upload filePath scriptName` ")
+		}
+
+	case "run":
+		if len(os.Args) == 3 {
+			runScript(os.Args[2])
+		} else {
+			fmt.Println("You must format this as `conch run scriptName`")
+		}
+
+	default:
+		fmt.Println("command not recognized")
+		os.Exit(1)
+	}
 }
 
 func uploadScript(filePath string, name string) {
@@ -26,6 +52,16 @@ func uploadScript(filePath string, name string) {
 	}
 
 	fmt.Println(string(file))
+}
+
+func runScript(name string) {
+	// call API to get script and run it
+
+	// send GET request to server -- serverurl/scripts/name
+	url := "serverURL.com/scripts/" + name
+	fmt.Println(url)
+
+	// once you have the script, do runCmd to run the script
 }
 
 func runCmd(cmd string) {
@@ -49,16 +85,6 @@ func runCmd(cmd string) {
 		}
 	}
 	return
-}
-
-func runScript(name string) {
-	// call API to get script and run it
-
-	// send GET request to server -- serverurl/scripts/name
-	url := "serverURL.com/scripts/" + name
-	fmt.Println(url)
-
-	// once you have the script, do runCmd to run the script
 }
 
 // IO Utils
