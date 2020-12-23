@@ -45,13 +45,21 @@ func uploadScript(filePath string, name string) {
 	// convert file of script to string
 	file, err := ReadFile("cli/test.sh")
 
-	fmt.Println(file)
-
 	if err != nil {
 		fmt.Println(err)
 	}
 
-	fmt.Println(string(file))
+	scriptString := ""
+
+	lines := strings.Split(file, "\n")
+
+	for i := 0; i < len(lines)-1; i++ {
+		scriptString += lines[i] + " && "
+	}
+
+	scriptString += lines[len(lines)-1]
+
+	fmt.Println(scriptString)
 }
 
 func runScript(name string) {
