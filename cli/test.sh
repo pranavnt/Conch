@@ -1,0 +1,2 @@
+echo hi
+echo bye
