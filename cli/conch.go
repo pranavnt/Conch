@@ -43,7 +43,7 @@ func main() {
 
 func uploadScript(filePath string, name string) {
 	// convert file of script to string
-	file, err := ReadFile("cli/test.sh")
+	file, err := ReadFile(filePath)
 
 	if err != nil {
 		fmt.Println(err)
@@ -60,6 +60,8 @@ func uploadScript(filePath string, name string) {
 	scriptString += lines[len(lines)-1]
 
 	fmt.Println(scriptString)
+
+	// now post scriptstring and name to the API
 }
 
 func runScript(name string) {
