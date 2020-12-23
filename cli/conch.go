@@ -19,19 +19,17 @@ func runCmd(cmd string) {
 	for i := 0; i < len(lines); i++ {
 		line := strings.Split(lines[i], " ")
 
-		fmt.Println(line)
-	}
+		command := exec.Command(line[0], line[1:]...)
 
-	command := exec.Command("cat", "cli")
+		command.Stdout = os.Stdout
+		command.Stderr = os.Stderr
 
-	command.Stdout = os.Stdout
-	command.Stderr = os.Stderr
+		err := command.Run()
 
-	err := command.Run()
-
-	if err != nil {
-		fmt.Println(err)
-		return
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
 	}
 	return
 }
