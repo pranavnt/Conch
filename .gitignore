@@ -15,3 +15,5 @@
 # vendor/
 
 .env
+
+api/node_modules/

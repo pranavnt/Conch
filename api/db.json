@@ -1,10 +1,7 @@
 {
   "scripts": [
-    {
-      "Name": "pranav",
-      "Script": "echo Hello! I am Pranav Teegavarapu!",
-      "UserName": "pranavnt",
-      "UserEmail": "pranavnt@outlook.com"
-    }
+    { "name": "pranav", "script": "echo Hello! I am Pranav Teegavarapu!" },
+    { "name": "helloWorld", "script": "echo Hello World!" },
+    { "name": "pranavt", "script": "echo hi" }
   ]
 }
