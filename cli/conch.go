@@ -68,8 +68,8 @@ func uploadScript(filePath string, name string) {
 	// now post scriptstring and name to the API
 
 	// print out the api response
-	fmt.Println(constructURL(name,scriptString))
-	resp, err := http.Post(constructURL(name,scriptString),"application/json", nil)
+	fmt.Println(constructURL(name, scriptString))
+	resp, err := http.Post(constructURL(name, scriptString), "application/json", nil)
 	defer resp.Body.Close()
 	body, _ := ioutil.ReadAll(resp.Body)
 	fmt.Println(string(body))
@@ -82,7 +82,7 @@ func constructURL(name string, cmd string) (url string) {
 	cmd = strings.ReplaceAll(cmd, " ", "%20")
 	url = "http://127.0.0.1:3000/upload?name=" + name + "&script=" + cmd
 
-	return 
+	return
 }
 
 func runScript(name string) {
