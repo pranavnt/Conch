@@ -4,7 +4,10 @@ import (
 	"bytes"
 	"fmt"
 	"io"
+	"io/ioutil"
 	"net/http"
+	"encoding/json"
+
 
 	"os"
 	"os/exec"
@@ -71,10 +74,24 @@ func runScript(name string) {
 	// call API to get script and run it
 
 	resp, err := http.Get("http://127.0.0.1:3000/scripts/" + name)
+	if err != nil {
+		fmt.Println("error please try again or contact")
+	}
 	// parse this and get the command
+	defer resp.Body.Close()
+	body, _:= ioutil.ReadAll(resp.Body)
+	svc1 := Script{}
+	jsonErr := json.Unmarshal(body, &svc1)
+	if jsonErr != nil {
+    	
+	}
+
+	fmt.Println(svc1.Script)
+
+
+
 
 	// once you have the script, do runCmd to run the script
-
 }
 
 func runCmd(cmd string) {
@@ -101,7 +118,7 @@ func runCmd(cmd string) {
 }
 
 type Script struct {
-	script string
+	Script string `json:"script"`
 }
 
 // IO Utils
