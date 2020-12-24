@@ -2,13 +2,12 @@ package main
 
 import (
 	"bytes"
+	"encoding/json"
 	"fmt"
-	"log"
 	"io"
 	"io/ioutil"
+	"log"
 	"net/http"
-	"encoding/json"
-
 
 	"os"
 	"os/exec"
@@ -71,6 +70,14 @@ func uploadScript(filePath string, name string) {
 	// print out the api response
 }
 
+func constructURL(name string, cmd string) (url string) {
+	cmd = strings.ReplaceAll(cmd, " ", "%20")
+
+	url = "http://127.0.0.1:3000/upload?name=" + name + "&script=" + cmd
+
+	return
+}
+
 func runScript(name string) {
 	// call API to get script and run it
 
@@ -79,12 +86,12 @@ func runScript(name string) {
 		log.Fatal(err)
 	}
 	defer resp.Body.Close()
-	body, _:= ioutil.ReadAll(resp.Body)
-	
+	body, _ := ioutil.ReadAll(resp.Body)
+
 	data := Script{}
 	jsonErr := json.Unmarshal(body, &data)
 	if jsonErr != nil {
-    	log.Fatal(err)
+		log.Fatal(err)
 	}
 
 	runCmd(data.Script)
