@@ -3,8 +3,12 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"io"
+	"io/ioutil"
 	"net/http"
+	"encoding/json"
+
 
 	"os"
 	"os/exec"
@@ -47,7 +51,7 @@ func uploadScript(filePath string, name string) {
 	file, err := ReadFile(filePath)
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 
 	scriptString := ""
@@ -71,10 +75,19 @@ func runScript(name string) {
 	// call API to get script and run it
 
 	resp, err := http.Get("http://127.0.0.1:3000/scripts/" + name)
-	// parse this and get the command
+	if err != nil {
+		log.Fatal(err)
+	}
+	defer resp.Body.Close()
+	body, _:= ioutil.ReadAll(resp.Body)
+	
+	data := Script{}
+	jsonErr := json.Unmarshal(body, &data)
+	if jsonErr != nil {
+    	log.Fatal(err)
+	}
 
-	// once you have the script, do runCmd to run the script
-
+	runCmd(data.Script)
 }
 
 func runCmd(cmd string) {
@@ -93,22 +106,21 @@ func runCmd(cmd string) {
 		err := command.Run()
 
 		if err != nil {
-			fmt.Println(err)
-			return
+			log.Fatal(err)
 		}
 	}
 	return
 }
 
 type Script struct {
-	script string
+	Script string `json:"script"`
 }
 
 // IO Utils
 func ReadFile(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
-		return "nil", err
+		log.Fatal(err)
 	}
 	defer f.Close()
 
