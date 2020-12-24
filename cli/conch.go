@@ -3,6 +3,7 @@ package main
 import (
 	"bytes"
 	"fmt"
+	"log"
 	"io"
 	"io/ioutil"
 	"net/http"
@@ -50,7 +51,7 @@ func uploadScript(filePath string, name string) {
 	file, err := ReadFile(filePath)
 
 	if err != nil {
-		fmt.Println(err)
+		log.Fatal(err)
 	}
 
 	scriptString := ""
@@ -75,23 +76,18 @@ func runScript(name string) {
 
 	resp, err := http.Get("http://127.0.0.1:3000/scripts/" + name)
 	if err != nil {
-		fmt.Println("error please try again or contact")
+		log.Fatal(err)
 	}
-	// parse this and get the command
 	defer resp.Body.Close()
 	body, _:= ioutil.ReadAll(resp.Body)
-	svc1 := Script{}
-	jsonErr := json.Unmarshal(body, &svc1)
+	
+	data := Script{}
+	jsonErr := json.Unmarshal(body, &data)
 	if jsonErr != nil {
-    	
+    	log.Fatal(err)
 	}
 
-	fmt.Println(svc1.Script)
-
-
-
-
-	// once you have the script, do runCmd to run the script
+	runCmd(data.Script)
 }
 
 func runCmd(cmd string) {
@@ -110,8 +106,7 @@ func runCmd(cmd string) {
 		err := command.Run()
 
 		if err != nil {
-			fmt.Println(err)
-			return
+			log.Fatal(err)
 		}
 	}
 	return
@@ -125,7 +120,7 @@ type Script struct {
 func ReadFile(filename string) (string, error) {
 	f, err := os.Open(filename)
 	if err != nil {
-		return "nil", err
+		log.Fatal(err)
 	}
 	defer f.Close()
 
