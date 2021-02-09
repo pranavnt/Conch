@@ -4,8 +4,6 @@
 </p>
 <h2 align="center">Store your shell scripts in the cloud and run them anywhere!</h2>
 
-Add GIF of it working
-
 ### Local Environment Setup
 
 1. For the API, run `yarn` to install dependencies and then start the server with `node api.js`
