@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "scripts": [
     { "name": "pranav", "script": "echo Hello! I am Pranav Teegavarapu!" },
@@ -7,6 +6,3 @@
     { "name": "testing", "script": "echo h  echo e  echo l  echo l  echo o" }
   ]
 }
-=======
-{"scripts":[{"name":"pranav","script":"echo Hello! I am Pranav Teegavarapu!"},{"name":"helloWorld","script":"echo Hello World!"},{"name":"hey","script":"echo h  echo e  echo l  echo l  echo o"}]}
->>>>>>> a91bd9b63a2eef490c0f38cfd3d554b11a87f518
